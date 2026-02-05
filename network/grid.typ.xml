@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='utf-8'?>
+<types xmlns__xsi="http://www.w3.org/2001/XMLSchema-instance" xsi__noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/types_file.xsd"><type id="default" priority="5" numLanes="2" speed="13.89" allow="passenger emergency bicycle delivery truck motorcycle" sidewalkWidth="2.0" /></types>
