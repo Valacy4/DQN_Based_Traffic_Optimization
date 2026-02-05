@@ -122,10 +122,10 @@ python run.py --mode rl --no-gui
 
 ## Technical Notes
 
-- **Port**: Dashboard runs on port 5000 (hardcoded, firewalled safe)
-- **Default Mode**: Rule-based control (safer, more predictable)
+- **Port**: Dashboard runs on port 5000 
+- **Default Mode**: Rule-based control 
 - **Workflow**: `Dashboard` workflow automatically starts the application
-- **Metrics Update**: Every 10 simulation steps (configurable)
+- **Metrics Update**: Every 10 simulation steps 
 - **RL Training**: Batch training every 50 steps when in RL mode
 - **Step Length**: 0.1 seconds for smooth, realistic vehicle movement
 - **Dashboard Refresh**: 2-second auto-refresh for real-time metric updates
