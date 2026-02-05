@@ -72,3 +72,60 @@ The project follows a **three-layer architecture**:
 - Controls simulation mode and execution
 
 The simulation and dashboard communicate using JSON-based metric files to keep the system simple and reliable.
+
+## Project Structure
+
+```
+.
+├── run.py                      # Main simulation entry point
+├── start_application.py        # Application launcher (dashboard + simulation)
+├── config/
+│   ├── traffic_controller.py  # Abstract base controller
+│   ├── rule_based_controller.py # Rule-based control implementation
+│   └── dqn_agent.py           # Deep Q-Network RL agent
+├── network/
+│   ├── generate_network.py    # 3x3 grid network generator
+│   ├── vehicle_types.py       # Vehicle type definitions
+│   ├── route_generator.py     # Dynamic route generation (FIXED)
+│   └── urban_elements.py      # Buildings, trees, POIs
+├── dashboard/
+│   └── app.py                 # Streamlit dashboard application (FIXED)
+├── models/                     # Saved DQN models
+└── logs/                      # Simulation logs
+```
+
+## How to Run
+
+### Quick Start (Dashboard Only)
+```bash
+python start_application.py
+```
+This starts the dashboard at http://localhost:5000. Use dashboard controls to start/stop simulation.
+
+### With Simulation Auto-Start
+```bash
+# Rule-based mode with GUI
+python start_application.py --auto-start --mode rule
+
+# RL-based mode without GUI (faster)
+python start_application.py --auto-start --mode rl --no-gui
+```
+
+### Direct Simulation (No Dashboard)
+```bash
+# Rule-based with GUI
+python run.py --mode rule --gui
+
+# RL training (headless)
+python run.py --mode rl --no-gui
+```
+
+## Technical Notes
+
+- **Port**: Dashboard runs on port 5000 (hardcoded, firewalled safe)
+- **Default Mode**: Rule-based control (safer, more predictable)
+- **Workflow**: `Dashboard` workflow automatically starts the application
+- **Metrics Update**: Every 10 simulation steps (configurable)
+- **RL Training**: Batch training every 50 steps when in RL mode
+- **Step Length**: 0.1 seconds for smooth, realistic vehicle movement
+- **Dashboard Refresh**: 2-second auto-refresh for real-time metric updates
